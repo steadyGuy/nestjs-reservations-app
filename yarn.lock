@@ -1094,6 +1094,13 @@
   dependencies:
     undici-types "~5.26.4"
 
+"@types/node@>=8.1.0":
+  version "20.10.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.6.tgz#a3ec84c22965802bf763da55b2394424f22bfbb5"
+  integrity sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==
+  dependencies:
+    undici-types "~5.26.4"
+
 "@types/passport-jwt@^3.0.13":
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@types/passport-jwt/-/passport-jwt-3.0.13.tgz#119267d2fc1af7d274a512731146183de5f2b53f"
@@ -5151,6 +5158,14 @@ strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+stripe@^14.10.0:
+  version "14.10.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-14.10.0.tgz#3d351ad9180a4c20e1dda50bc79bcee6b44757da"
+  integrity sha512-zI6yxYVFJtjibgb06Xn08KsJy1Zq+KE3jLkhZ8bJOTrxNVi2CtCreQdUn+NjXN5lTEdiNhxIqL0NmuSza+rOGw==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
 
 superagent@^8.0.5:
   version "8.1.2"
