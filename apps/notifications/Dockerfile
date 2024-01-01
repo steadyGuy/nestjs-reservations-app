@@ -8,10 +8,10 @@ COPY tsconfig.json tsconfig.json
 
 RUN yarn install
 
-COPY apps/auth apps/auth
+COPY apps/notifications apps/notifications
 COPY libs libs
 
-RUN cd apps/auth && yarn install
+RUN cd apps/notifications && yarn install
 
 RUN yarn build
 
@@ -29,4 +29,4 @@ RUN yarn install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/auth/main"]
+CMD ["node", "dist/apps/notifications/main"]
