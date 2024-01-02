@@ -16,18 +16,18 @@ RUN cd apps/auth && yarn install
 
 RUN yarn build auth
 
-FROM node:alpine as production
+# FROM node:alpine as production
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+# ARG NODE_ENV=production
+# ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY yarn.lock ./
+# COPY package.json ./
+# COPY yarn.lock ./
 
-RUN yarn install --prod
+# RUN yarn install --prod
 
-COPY --from=development /usr/src/app/dist ./dist
+# COPY --from=development /usr/src/app/dist ./dist
 
 CMD ["node", "dist/apps/auth/main"]
