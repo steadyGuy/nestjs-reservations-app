@@ -1,0 +1,73 @@
+steps:
+  # Reservations
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/reservations/production',
+        '-f',
+        'apps/reservations/Dockerfile',
+        './Dockerfile',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/reservations/production',
+      ]
+  # Auth
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/auth/production',
+        '-f',
+        'apps/auth/Dockerfile',
+        './Dockerfile',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/auth/production',
+      ]
+  # Notifications
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/notifications/production',
+        '-f',
+        'apps/notifications/Dockerfile',
+        './Dockerfile',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/notifications/production',
+      ]
+  # Payments
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/payments/production',
+        '-f',
+        'apps/payments/Dockerfile',
+        './Dockerfile',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        't',
+        'europe-central2-docker.pkg.dev/nestjs-reservations/payments/production',
+      ]

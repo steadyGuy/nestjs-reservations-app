@@ -10,10 +10,11 @@ RUN yarn install
 
 COPY apps/notifications apps/notifications
 COPY libs libs
+COPY nest-cli.json nest-cli.json
 
 RUN cd apps/notifications && yarn install
 
-RUN yarn build
+RUN yarn build notifications
 
 FROM node:alpine as production
 
