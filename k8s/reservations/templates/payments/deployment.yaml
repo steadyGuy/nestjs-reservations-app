@@ -6,7 +6,6 @@ metadata:
   name: payments
 spec:
   replicas: 1
-  terminationGracePeriodSeconds: 30
   selector:
     matchLabels:
       app: payments
@@ -16,8 +15,7 @@ spec:
         app: payments
     spec:
       containers:
-        - image: europe-central2-docker.pkg.dev/nestjs-reservations/payments/production
-          imagePullPolicy: "Always"
+        - image: europe-central2-docker.pkg.dev/nestjs-reservations/payments/production:latest
           name: payments
           env:
             - name: PORT

@@ -15,7 +15,7 @@ spec:
         app: auth
     spec:
       containers:
-        - image: europe-central2-docker.pkg.dev/nestjs-reservations/auth/production
+        - image: europe-central2-docker.pkg.dev/nestjs-reservations/auth/production:v2
           name: auth
           env:
             - name: MONGODB_URI
