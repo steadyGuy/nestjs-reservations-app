@@ -1,0 +1,37 @@
+services:
+  e2e:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    volumes:
+        - ./specs:/usr/src/app/specs
+    depends_on:
+      - reservations
+      - auth
+      - payments
+      - notifications
+      - mongo
+  reservations:
+    image: europe-central2-docker.pkg.dev/nestjs-reservations/reservations/production
+    env_file:
+      - ../apps/reservations/.env
+    ports: 
+      - '3000:3000'
+  auth:
+    image: europe-central2-docker.pkg.dev/nestjs-reservations/auth/production
+    env_file:
+      - ../apps/auth/.env
+    ports: 
+      - '3001:3001'
+  payments:
+    image: europe-central2-docker.pkg.dev/nestjs-reservations/payments/production
+    env_file:
+      - ../apps/payments/.env
+  notifications:
+    image: europe-central2-docker.pkg.dev/nestjs-reservations/notifications/production
+    env_file:
+      - ../apps/notifications/.env
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
