@@ -43,4 +43,8 @@ export class UsersService {
       _id: new mongoose.Types.ObjectId(userId),
     });
   }
+
+  async findAll() {
+    return this.userRepository.find({});
+  }
 }
