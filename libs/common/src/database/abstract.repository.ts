@@ -20,7 +20,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     const document = await this.model
       .findOne({
         ...filterQuery,
-        _id: new mongoose.Types.ObjectId(filterQuery._id),
       })
       .lean<TDocument>(true);
     if (!document) {
