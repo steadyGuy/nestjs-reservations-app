@@ -37,4 +37,9 @@ export class PaymentsService {
 
     return paymentIntent;
   }
+
+  async getPayments() {
+    const paymens = await this.stripe.paymentIntents.list();
+    return paymens.data;
+  }
 }
