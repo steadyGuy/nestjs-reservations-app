@@ -6,27 +6,30 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersRepository } from './users.repository';
 import * as bcrypt from 'bcryptjs';
-import mongoose from 'mongoose';
+
+import { Role, User } from '@app/common/models';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UsersRepository) {}
 
-  private async validateCreateUserDto(createUserDto: CreateUserDto) {
+  private async validateCreateUser(createUser: CreateUserDto) {
     try {
-      await this.userRepository.findOne({ email: createUserDto.email });
+      await this.userRepository.findOne({ email: createUser.email });
     } catch (error) {
       return;
     }
     throw new UnprocessableEntityException('Email already exists');
   }
 
-  async create(createUserDto: CreateUserDto) {
-    await this.validateCreateUserDto(createUserDto);
-    return this.userRepository.create({
-      ...createUserDto,
-      password: await bcrypt.hash(createUserDto.password, 10),
+  async create(createUser: CreateUserDto) {
+    await this.validateCreateUser(createUser);
+    const newUser = new User({
+      ...createUser,
+      password: await bcrypt.hash(createUser.password, 10),
+      roles: createUser.roles.map((roleDto) => new Role(roleDto)),
     });
+    return this.userRepository.create(newUser);
   }
 
   async verifyUser(email: string, password: string) {
@@ -38,9 +41,12 @@ export class UsersService {
     return user;
   }
 
-  async getUser(userId: string) {
-    return this.userRepository.findOne({
-      _id: new mongoose.Types.ObjectId(userId),
-    });
+  async getUser(id: number) {
+    return this.userRepository.findOne(
+      {
+        id,
+      },
+      { roles: true },
+    );
   }
 }
