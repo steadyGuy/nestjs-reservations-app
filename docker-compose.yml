@@ -48,4 +48,4 @@ services:
     env_file:
       - .env
     ports:
-      - '3307:3307'
+      - '3307:3306'
